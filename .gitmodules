@@ -1,0 +1,3 @@
+[submodule "canjs"]
+	path = canjs
+	url = https://github.com/bitovi/canjs.git

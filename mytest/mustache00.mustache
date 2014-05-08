@@ -1,0 +1,102 @@
+{{! /*
+
+Mustache is a logic-less templating languages [which provide live binding when used with Observes. CanJS's Mustache implementation supports both normal Mustache templates as well as the Handlebars extensions, allowing you to easily reuse templates that you've already written.
+
+Mustache templates are essentially straight HTML, except that they contain special tags used for injecting your data into the HTML. The number of ways you can inject data is limited by design for simplicity and maintainability, but can be enhanced through the use of helpers.
+
+Here's an example of a template that might render a list of Todos:
+
+*/ }}
+
+<script type="text/mustache" id="todosList">
+  {{#todos}}
+    <li>{{description}}</li>
+  {{/todos}}
+</script>
+
+{{! 
+Todo.findAll({}, function(todos) {
+    document.getElementById('list')
+        .appendChild(can.view('todoList', {todos: todos}));
+});
+
+Magic tags
+There are three kinds of magic tags used in Mustache:
+
+{{ }} will HTML-escape the value enclosed inside the tags and write it to the template.
+{{{ }}} will write the value enclosed inside the tags directly to the template without escaping it.
+{{! }} is a comment that writes nothing to the template.
+
+{{! Variables
+
+Variable tags insert data into the template. They reference variables in the current context.
+ }}
+
+Name: {{name}}
+{name: 'Alice'}
+
+{{! 
+Sections
+
+Sections contain text blocks and are conditionally rendered based on the variable enclosed in the opening tag. They also change the active context inside them to that of the variable referenced in the opening tag.
+
+For the following examples, we will assume the template is being populated with this set of data:
+ }}
+
+{
+    name: 'Alice Liddell',
+    nickname: '',
+    friends: ['Bob', 'Eve'],
+    enemies: []
+}
+
+If the variable is undefined, null, false, '', or [], it is considered a falsey value and the section is not rendered at all. Neither of these sections will render:
+
+{{#enemies}}
+<li>{{.}}</li>
+{{/enemies}}
+
+{{#nickname}}{{.}}{{/nickname}}
+
+If the variable is a non-empty array, the section will be rendered once for each element in the array. If it is truthy but not an array, the section is rendered once.
+
+<h1>{{#name}}{{.}}{{/name}}</h1>
+<ul>
+    {{#friends}}
+    <li>{{.}}</li>
+    {{/friends}}
+</ul>
+
+=>
+
+<h1>Alice Liddell</h1>
+<ul>
+    <li>Bob</li>
+    <li>Eve</li>
+</ul>
+
+You can also make inverted sections that render if the variable referenced in the opening tag is falsey:
+
+<ul>
+    {{#friends}}
+    <li>{{.}}</li>
+    {{/friends}}
+    {{^friends}}
+    <li>You have no friends.</li>
+    {{/friends}}
+</ul>
+
+{{! 
+Context
+
+When Mustache is resolving an object in a section, it sets the current context to the object value for which it is iterating. (If the variable in the opening tag of a section was not an array, it sets the context to the value of that variable.) You can reference the current context as ..
+
+Internally, Mustache keeps a stack of contexts as the template enters nested sections and helpers. If a variable is not found in the current context, Mustache will look for the the in each successive parent context until it resolves the variable or runs out of parent contexts.
+
+For example, with this data:
+
+ }}
+
+
+
+
