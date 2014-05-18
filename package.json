@@ -1,0 +1,25 @@
+{
+  "name": "canjspratice",
+  "version": "0.0.1",
+  "description": "CanJS Pratice",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitovi/canjsmeetup.git"
+  },
+  "keywords": [
+    "CanJS"
+  ],
+  "author": "Soo Hwan Park <suwanny@gmail.com> (http://suwanny.github.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitovi/canjsmeetup/issues"
+  },
+  "homepage": "https://github.com/bitovi/canjsmeetup",
+  "dependencies": {
+    
+  }
+}

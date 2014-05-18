@@ -1,0 +1,25 @@
+{
+  "name": "canjspratice",
+  "version": "0.0.1",
+  "homepage": "https://github.com/bitovi/canjsmeetup",
+  "authors": [
+    "Soo Hwan Park <suwanny@gmail.com>"
+  ],
+  "description": "CanJS Practice",
+  "main": "index.js",
+  "keywords": [
+    "CanJS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "canjs": "~2.1.0",
+    "steal": "~3.3.0"
+  }
+}
