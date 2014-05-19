@@ -17,14 +17,23 @@ module.exports = function(grunt) {
       }
     },
     exec: {
-      run: 'node index.js'
+      run: 'node_modules/.bin/nodemon index.js'
+    },
+    nodemon: {
+      dev: {
+        script: 'index.js',
+        options: {
+          watch: ['lib']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('run', ['exec:run']);
+  grunt.registerTask('run', ['nodemon:dev']);
 }
 

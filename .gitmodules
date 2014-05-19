@@ -1,0 +1,3 @@
+[submodule "canjsmeetup"]
+	path = canjsmeetup
+	url = https://github.com/bitovi/canjsmeetup.git

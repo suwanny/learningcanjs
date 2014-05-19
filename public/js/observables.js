@@ -117,12 +117,57 @@ age(26);
 console.log('age:', age());       // 26
 console.log('prevAge:', previousAge); // 25
 
+/*
+Composite Computes
 
+Computes can also be used to generate a unique value based on values derived from other observable properties. This type of compute is created by calling can.compute(getterFunction). When the observable properties that the compute is derived from change, the value of the compute changes:
 
+Since the value of the Compute is cached any time a derived value is changed, reading the value is fast.
+*/
 
+var names = new can.Map({
+    first: 'Alice',
+    last: 'Liddell'
+});
+var fullName = can.compute(function() {
+    // We use attr to read the values
+    // so the compute knows what to listen to.
+    return names.attr('first') + ' ' + names.attr('last');
+});
+var previousName = '';
+fullName();   // 'Alice Liddell'
+fullName.bind('change', function(ev, newVal, oldVal) {
+    previousName = oldVal;
+});
+names.attr({
+    first: 'Allison',
+    last: 'Wonderland'
+});
+fullName();   // 'Allison Wonderland'
+previousName; // 'Alice Liddell'
 
+/*
+Converted Computes
 
+Computes are also useful for creating links to properties within Observes. One of the most frequent examples of this is when converting from one unit to another.
+*/
 
+// progress ranges from 0 to 1.
+var project = new can.Map({ progress: 0.3 });
+var progressPercentage = can.compute(function(newVal) {
+    if(newVal !== undefined) {
+        // set a value
+        project.attr('progress', newVal / 100);
+    } else {
+        // get the value
+        return project.attr('progress') * 100;
+    }
+});
+progressPercentage();     // 30
+// Setting percentage...
+progressPercentage(75);
+// ...updates project.progress!
+project.attr('progress'); // .75
 
 
 
