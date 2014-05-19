@@ -19,7 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "canjs": "~2.1.0",
+    "canjs": "2.1.0",
     "steal": "~3.3.0",
     "bootstrap": "3.1.1",
     "jquery": "2.1.1"

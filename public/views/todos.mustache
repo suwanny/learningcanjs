@@ -1,0 +1,34 @@
+<ul>
+  {{#todos}}
+    {{>views/todo}}
+  {{/todos}}
+</ul>
+
+
+{{#user}}
+  {{! can.data($('#name'), 'user') }}
+  <h1 id='name' {{data 'user'}}>{{#name}}{{.}}{{/name}}</h1>
+  <ul>
+    {{#friends}}
+    <li {{data 'friend'}}>{{.}}</li>
+    {{/friends}}
+
+    {{#enemies}}
+    <li>{{.}}</li>
+    {{/enemies}}
+    {{^enemies}}
+    <li>No enemy</li>
+    {{/enemies}}
+  </ul>
+{{/user}}
+
+
+{{#siblings}}
+  {{#brothers}}
+  <li>
+    {{#sisters}}
+        {{name}}
+    {{/sisters}}
+  </li>
+  {{/brothers}}
+{{/siblings}}

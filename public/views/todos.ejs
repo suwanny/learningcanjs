@@ -1,0 +1,8 @@
+<ul>
+  <% todos.each(function(todo) { %>
+  <li <%= (el) -> can.data(el, 'todo', todo) %>>
+      <%= todo.attr('description') %>
+  </li>
+  <% }) %>
+</ul>
+

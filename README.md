@@ -4,12 +4,9 @@
 
 ```
 npm install
-
 npm install -g bower
-bower install
-
 npm install -g grunt-cli
-
+bower install
 ```
 
 ## How to run

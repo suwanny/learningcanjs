@@ -21,9 +21,9 @@ var Todo = can.Model({
   update: 'PUT /todos/{id}',
   destroy: 'DELETE /todos/{id}'
 }, {});
-var dishesTask = new Todo({
-  description: 'Do the dishes.'
-});
+// var dishesTask = new Todo({
+//   description: 'Do the dishes.'
+// });
 
 /*
 
@@ -58,12 +58,19 @@ findOne returns a Deferred that resolves to the Todo if the call succeeds and re
 
 
 
-Todo.bind('created', function(ev, created) {
-  // created is the created Todo
-  console.log('Todo created ----------------------------- ');
-  console.dir(ev);
-  console.dir(created);
-});
+// Todo.bind('created', function(ev, created) {
+//   // created is the created Todo
+//   console.log('Todo created ----------------------------- ');
+//   console.dir(ev);
+//   console.dir(created);
+// });
+
+// Todo.bind('destroyed', function(ev, created) {
+//   console.log('Todo destroyed ----------------------------- ');
+//   console.dir(ev);
+//   console.dir(created);
+// });
+
 
 /*
 # Modifying items
@@ -93,16 +100,16 @@ When you need to delete a Model's counterpart on the server, just call destroy o
 When destroy is called in the above code, can.Model makes a DELETE request to /todos/6.
 */
 
-var cats = new Todo({
-  description: "Feed the cats."
-});
-cats.save(function(saved) {
-  console.log('saved cats ..........')
-  saved.destroy(function(destroyed) {
-    // destroyed is the Todo that was destroyed
-    // console.dir(destroyed);
-  });
-});
+// var cats = new Todo({
+//   description: "Feed the cats."
+// });
+// cats.save(function(saved) {
+//   console.log('saved cats ..........')
+//   saved.destroy(function(destroyed) {
+//     // destroyed is the Todo that was destroyed
+//     // console.dir(destroyed);
+//   });
+// });
 
 /*
 # Listening to events
@@ -116,22 +123,32 @@ For example, here is how you listen for an instance being created on the server:
 
 */
 
-var mop = new Todo({
-  description: 'Mop the floor.'
-});
-mop.bind('created', function(ev) {
-  // created is the created Todo
-  console.log('mob created ---------------------')
-  console.log('created', ev);
-});
-mop.save();
+// var mop = new Todo({
+//   description: 'Mop the floor.' + new Date()
+// });
+// // mop.bind('created', function(ev) {
+// //   // created is the created Todo
+// //   console.log('mob created ---------------------')
+// //   console.log('created', ev);
+// // });
+// mop.save();
+
+/*
+# Model Lists
+Model Lists (provided by can.Model.List) are Lists whose items are Models. When one of a Model List's elements are destroyed, that element is removed from the list.
+*/
 
 
 
+// Todo.findAll({}, function(todos) {
+//   console.log('length: ', todos.length); // 
+//   var oldLen = todos.length;
+//   todos[0].destroy(function() {
+//     if (todos.length === oldLen) {
+//       console.error('destory does not reduce can.Model.List.length: ', todos.length); //
+//     }
+//   });
+// });
 
 
-
-
-
-
-console.log('models');
+console.log('');
